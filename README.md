@@ -2,7 +2,12 @@
 
 This is a minimal cookiecutter template to create a project structure for
 a data science project that can serve either data exploration or as an
-stand-alone application.
+stand-alone application that can be Containerized.
+
+## Usage
+```
+pipx run cookiecutter gh:srinathh/minimal_data_science_cookiecutter
+```
 
 
 ## Project Organization
