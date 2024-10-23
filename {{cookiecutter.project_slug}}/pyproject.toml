@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "{{ cookiecutter.project_slug }}"
+description = "{{ cookiecutter.project_short_description }}"
+authors = [{name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}"}]
+readme = "README.md"
+requires-python = ">={{ cookiecutter.python_version }}"
+classifiers = [
+    "Programming Language :: Python :: {{ cookiecutter.python_version }}",
+]
+dependencies = [
+    {% if cookiecutter.use_standard_ds_pkgs == 'y' -%}"pandas",
+    "numpy",
+    "scikit-learn",
+    "matplotlib",
+    "python-dotenv",{% endif %}
+]
+dynamic = ["version"]
+license = {file = "LICENSE"}
+
+[project.optional-dependencies]
+dev = [
+    {% if cookiecutter.use_jupyter == 'y' -%}"jupyter",{% endif %}
+    {% if cookiecutter.use_pytest == 'y' -%}"pytest",
+    "pytest-cov",{% endif %}
+    "flake8",
+    "black",
+]
+
+[project.scripts]
+{{ cookiecutter.project_slug }}= "app.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

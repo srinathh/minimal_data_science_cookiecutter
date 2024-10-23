@@ -1,0 +1,13 @@
+{
+    "full_name": "John Doe",
+    "email": "johndoe@nomame.com",
+    "project_name": "Data Science App",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+    "project_short_description": "Generic Minimal Data Science Application Template",
+    "use_pytest": "y",
+    "use_standard_ds_pkgs": "y",
+    "use_jupyter": "y",
+    "open_source_license": ["MIT", "BSD", "ISCL","Apache Software License 2.0", "Not open source"],
+    "python_version": ["3.12", "3.11", "3.10", "3.9"],
+    "use_slim_docker_img": "n"
+}
