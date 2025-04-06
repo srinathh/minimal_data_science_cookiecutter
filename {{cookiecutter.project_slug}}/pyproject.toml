@@ -16,14 +16,15 @@ dependencies = [
     "numpy",
     "scikit-learn",
     "matplotlib",
-    "python-dotenv",{% endif %}
+    {% endif %}
+    "python-dotenv",
 ]
 dynamic = ["version"]
 license = {file = "LICENSE"}
 
 [project.optional-dependencies]
 dev = [
-    {% if cookiecutter.use_jupyter == 'y' -%}"jupyter",{% endif %}
+    {% if cookiecutter.use_jupyter == 'y' -%}"notebook",{% endif %}
     {% if cookiecutter.use_pytest == 'y' -%}"pytest",
     "pytest-cov",{% endif %}
     "flake8",
@@ -35,3 +36,15 @@ dev = [
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.uv.sources]
+{{ cookiecutter.project_slug }} = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "{{ cookiecutter.project_slug }}",
+]
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"

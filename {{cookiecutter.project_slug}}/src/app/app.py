@@ -1,7 +1,6 @@
-from utils.sample import sample_util
 
 def main():
-    print(sample_util("World"))
+    print("Hello World!")
 
 
 if __name__ == "__main__":

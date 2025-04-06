@@ -1,16 +1,19 @@
-class Singleton(type):
-    """
-    Implementation of metaclass based Singleton pattern for Python 3 taken from
-    https://stackoverflow.com/questions/6760685/what-is-the-best-way-of-implementing-singleton-in-python
-    This is a frequently used pattern but not covered in the Standard Library
+import threading
 
-    Usage in Python 3:
-    class MyClass(BaseClass, metaclass=Singleton):
-        pass
+class SingletonMeta(type):
+    """A threadsafe MetaClass based Singleton pattern.
 
+        Usage:
+
+        class MyClass(metaclass=SingletonMeta):
+            pass
     """
     _instances = {}
+    _lock = threading.Lock()
+
     def __call__(cls, *args, **kwargs):
         if cls not in cls._instances:
-            cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
+            with cls._lock:
+                if cls not in cls._instances:
+                    cls._instances[cls] = super().__call__(*args, **kwargs)
         return cls._instances[cls]
